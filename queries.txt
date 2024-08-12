@@ -1,0 +1,26 @@
+Task 1
+
+SELECT Employee.name, SUM(Production.quantity_produced) AS total_quantity
+From Employee
+GROUP BY Employee.name
+
+Task 2
+SELECT Product.name, SUM(Order.quantity) AS total_quantity
+FROM Product
+JOIN Orders ON Product.id = Orders.product_id
+GROUP BY Product.name
+ORDER BY total_quantity DESC;
+
+Task 3
+SELECT Customer.name, SUM(Order.total_price) AS total_value
+JOIN Orders ON Customers.id = Order.customers_id
+GROUP BY Customer.name
+HAVING total_value>10;
+
+Task 4
+SELECT Product.name, SUM(Production.quantity_produced)
+WHERE date IN(
+    Production.date_produced
+)
+JOIN Production ON Production.product_id = Product.id
+GROUP BY Product.name
